@@ -4,7 +4,7 @@ doi - tiny sticky progress bar functional component in VanillaJS
 quick howto >
 
 ```javascript
-  import createProgressBar from "./sudobar.js";
+  import createProgressBar from "./sudobar.js"; // import the component
 
   const bar = createProgressBar("#ecf0f1", "#3498db", "4px", "500ms"); // bgColor, fgColor, height of the bar, transition
    

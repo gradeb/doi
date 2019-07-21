@@ -1,27 +1,25 @@
-const addStyle = ( a, b ) => Object.entries( a ).forEach(c => Reflect.set(b.style, ...c)) || b;
+const addStyles = ( a, b ) => (Object.entries( a ).forEach(c => Reflect.set(b.style, ...c)), b);
 
-const createStyledDiv = ( a = {} ) => addStyle(a, document.createElement("div"));
+const createStyledDiv = ( a = {} ) => addStyles(a, document.createElement("div"));
 
-const createProgressBar = ( bgColor = "#ccc", fgColor = "#000", height = "10px", transition = "0ms" ) => {
+export default ({ background = "#000", height = "10px", ...styles } = { }) => {
 
-  const b = createStyledDiv({ background: bgColor, position: "sticky", top: 0, left: 0, width: "100%", zIndex: 9999 });
+  const b = createStyledDiv({ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 9999 });
 
-  const c = createStyledDiv({ background: fgColor, height, width: 0, transition });
-
-  const e = document.body;
+  const c = createStyledDiv({ background, height, width: 0, ...styles });
 
   b.appendChild( c );
 
-  e.insertBefore( b, e.firstElementChild );
+  document.body.appendChild( b );
 
   return {
 
-    move: d => c.style.width = (d <= 100 ? d : 100) + "%",
+    go: k => c.style.width = (k <= 100 ? k : 100) + "%",
 
-    hide: () => b.style.display = "none"
+    hide: () => c.style.height = 0,
+
+    show: () => c.style.height = height
 
   };
 
 };
-
-export default createProgressBar;

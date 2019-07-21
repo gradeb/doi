@@ -14,7 +14,7 @@ export default ({ background = "#000", height = "10px", ...styles } = { }) => {
 
   return {
 
-    go: k => c.style.width = (k <= 100 ? k : 100) + "%",
+    go: k => c.style.width = `${(k <= 100 ? k : 100)}%`,
 
     hide: () => c.style.height = 0,
 

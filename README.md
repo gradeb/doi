@@ -4,11 +4,13 @@ doi - tiny sticky progress bar functional component in VanillaJS
 quick howto >
 
 ```javascript
-  import createProgressBar from "./sudobar.js"; // import the component
+  import doi from "./doi.js";
 
-  const bar = createProgressBar("#ecf0f1", "#3498db", "4px", "500ms"); // bgColor, fgColor, height of the bar, transition
-   
-  bar.move(10); // progress to 10%
+  const bar = doi({ height: "4px", transition: "height 200ms, width 500ms" });
+
+  bar.go(10); // progress to 10%
   
   bar.hide(); // hide the progress bar
+  
+  bar.show(); // show the progress bar
 ```

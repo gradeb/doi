@@ -1,24 +1,32 @@
-const addStyles = ( a, b ) => (Object.entries( a ).forEach(c => Reflect.set(b.style, ...c)), b);
+// doi.js | Harsh Rajput | India | MIT License
 
-const createStyledDiv = ( a = {} ) => addStyles(a, document.createElement("div"));
+const createStyledDiv = ( style ) => {
 
-export default ({ background = "#000", height = "10px", ...styles } = { }) => {
+  const div = document.createElement("div");
 
-  const b = createStyledDiv({ position: "fixed", top: 0, left: 0, width: "100%", zIndex: 9999 });
+  Object.entries( style ).forEach(c => Reflect.set( div.style, ...c ));
 
-  const c = createStyledDiv({ background, height, width: 0, ...styles });
+  return div;
 
-  b.appendChild( c );
+};
 
-  document.body.appendChild( b );
+export default ({ height = "5px", ...rest } = {}) => {
+
+  const a = createStyledDiv({ position: "fixed", top: 0, zIndex: 9999, width: "100%" }),
+
+        b = createStyledDiv({ width: 0, background: "#000", ...rest });
+
+  a.appendChild( b );
+
+  document.body.appendChild( a );
 
   return {
 
-    go: k => c.style.width = `${(k <= 100 ? k : 100)}%`,
+    go: v => b.style.width = (v <= 100 ? v : 100) + "%",
 
-    hide: () => c.style.height = 0,
+    hide: () => b.style.height = 0,
 
-    show: () => c.style.height = height
+    show: () => b.style.height = height
 
   };
 
